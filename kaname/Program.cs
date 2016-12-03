@@ -96,6 +96,8 @@ namespace kaname_san
 
                 _streamStarted = true;
 
+                _client.SetGame(new Game()); //ha, ha. get it?
+
                 await e.Channel.SendMessage("Starting audio stream...");
                 await SendAudio(e.GetArg(0), e.GetArg(1), voiceChan);
                 await e.Channel.SendMessage("Audio Stream stopped");
@@ -111,7 +113,7 @@ namespace kaname_san
                 {
                     Console.Write("Authorizing bot via token...");
 
-                    await _client.Connect(token);
+                    await _client.Connect(token, TokenType.Bot);
 
                     Console.WriteLine("Done.");
                     Console.WriteLine("Connected as " + _client.CurrentUser.Name);
